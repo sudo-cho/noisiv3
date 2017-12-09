@@ -21,7 +21,6 @@
         </div>
 
         <div class="myheader__bot">
-            <p class="myheader__bot__text">Legals</p>
             <p class="myheader__bot__text">Made with love in 2017</p>
             <p class="myheader__bot__text">Design by Lucas Dussouchaud</p>
         </div>
