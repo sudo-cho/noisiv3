@@ -1,6 +1,42 @@
 <template>
     <div id="project">
-        <main class="project">
+        <main class="mobile-active">
+            <div class="mobile-active__top">
+                <div class="mobile-active__top__titles">
+                    <h1 class="mobile-active__top__titles__title">{{ datas.title }}</h1>
+                    <h2 class="mobile-active__top__titles__description">{{ datas.description }}</h2>
+                    <p class="mobile-active__top__titles__fulldescription">{{ datas.fullDescription }}</p>
+                </div>
+                <div class="number">{{ datas.number }}</div>
+            </div>
+
+            <div class="project__right">
+                <div class="project__right__arrowscroll">scroll images ---></div>
+                <div class="project__right__images">
+                    <img v-for="img in datas.images" class="project__right__images__picture" :alt="img.alt" :src="imagePath(img.path)" />
+                </div>
+            </div>
+
+            <div v-for="item in datas.paragraph" class="project__left__main__elmt">
+                <div class="project__left__main__elmt__title">{{ item.name }}</div>
+                <ul class="project__left__main__elmt__list">
+                    <li v-bind:style="{backgroundColor: coloursName(item, list)}" :class="{ 'round': checkName(item.name) }" v-for="list in item.content" class="project__left__main__elmt__list__item">{{ list }}</li>
+                </ul>
+            </div>
+            <div class="project__left__main__extra">
+                <p class="project__left__main__extra__text">clients : {{ datas.clients }}</p>
+                <p class="project__left__main__extra__text">date : {{ datas.date }}</p>
+            </div>
+            <div class="project__left__main__url">
+                <a :href="datas.url" target="_blank" rel="noopener"><p class="project__left__main__url__text">{{ datas.url }}</p>
+                </a>
+            </div>
+
+
+
+        </main>
+
+        <main class="project desktop-active">
             <div class="project__left">
                 <div class="project__left__titles">
                     <h1 class="project__left__titles__title">{{ datas.title }}</h1>
@@ -85,10 +121,30 @@
      margin: 0 15px -20px 0;
  }
 
+ .mobile-active {
+     display: none;
+     &__top{
+         display: flex;
+         justify-content: space-between;
+         margin-top: 80px;
+         &__titles {
+             font-weight: 700;
+             &__title {
+                 font-size: 40px;
+             }
+             &__fulldescription {
+                 margin-top: 30px;
+                 font-weight: 400;
+             }
+         }
+     }
+ }
+
  .project {
      display: flex;
      &__left {
          flex: 1;
+         margin-right: 5%;
          &__titles {
              font-weight: 700;
              &__title {
@@ -119,6 +175,7 @@
      &__right {
          flex: 2;
          position: relative;
+         margin-right: 4%;
          &__description {
              max-width: 500px;
          }
@@ -136,10 +193,83 @@
              height: 600px;
              position: relative;
              &__picture {
-                 width: 640px;
                  max-width: 100%;
                  height: auto;
                  margin-bottom: 40px;
+             }
+         }
+     }
+ }
+
+
+ @media (max-width: 1280px) {
+     .project {
+         &__right {
+             &__images {
+                 margin-top: 70px;
+                 height: 500px;
+             }
+         }
+     }
+ }
+ @media (max-width: 1024px) {
+     .project {
+         &__left {
+             &__titles {
+                 &__title {
+                     font-size: 30px;
+                 }
+             }
+             &__main {
+                 margin-top: 0;
+                 &__elmt {
+                     margin: 30px 0;
+                 }
+                 &__url {
+                     margin-top: 20px;
+                 }
+             }
+         }
+         &__right {
+             &__images {
+                 margin-top: 40px;
+                 height: 350px;
+             }
+         }
+     }
+ }
+ @media (max-width: 768px) {
+     .project {
+         margin-top: 100px;
+     }
+ }
+ @media (max-width: 480px) {
+     .mobile-active {
+         display: initial;
+     }
+     .desktop-active {
+         display: none;
+     }
+     .number {
+         margin-top: 15px;
+     }
+     .project {
+         margin-top: 80px;
+         &__left {
+             &__main {
+                 &__elmt {
+                     margin: 0 0 50px 0;
+                 }
+             }
+         }
+         &__right {
+             margin-right: 0;
+             &__arrowscroll {
+                 display: none;
+             }
+             &__images {
+                 overflow: initial;
+                 height: initial;
              }
          }
      }

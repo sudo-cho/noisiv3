@@ -6,8 +6,8 @@
         "number": "1/4",
         "url": "https://droom-game.github.io/",
         "images": [
-            {"path": "droom/01.jpg", "alt": "droom main interface"},
             {"path": "droom/02.jpg", "alt": "droom main interface"},
+            {"path": "droom/01.jpg", "alt": "droom main interface"},
             {"path": "droom/03.jpg", "alt": "droom main interface"}
         ],
         "description": "A rhythm game playable with MIDI controller directly in your browser",

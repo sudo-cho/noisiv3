@@ -26,4 +26,16 @@
      height: 100%;
      justify-content: space-between;
  }
+ @media (max-width: 768px) {
+     #home {
+         display: block;
+         height: initial;
+         padding: 30px;
+     }
+ }
+ @media (max-width: 480px) {
+     #home {
+         padding: 10px;
+     }
+ }
 </style>
