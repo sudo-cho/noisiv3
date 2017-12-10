@@ -19,6 +19,7 @@
  html, body, #app {
      width: 100%;
      height: 100%;
+     overflow:hidden;
  }
 
  h2, h3, h4, h5, p {

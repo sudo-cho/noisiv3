@@ -3,6 +3,7 @@
         <div class="myheader__top">
             <h2 class="myheader__top__nick">Noisiv</h2>
             <h2 class="myheader__top__sub">Creating neat stuff since 1995</h2>
+
             <ul class="myheader__top__list">
                 <a target="_blank" rel="noopener" href="mailto:yo@noisiv.fr"><li class="myheader__top__list__item">yo@noisiv.fr</li></a>
                 <a target="_blank" rel="noopener" href="http://noisiv.fr/images/noisiv-cv.pdf"><li class="myheader__top__list__item">my résumé</li></a>
@@ -12,11 +13,16 @@
         </div>
 
         <div class="myheader__mid">
-            <p class="myheader__mid__current">Droom</p>
             <ul class="myheader__mid__list">
-                <li class="myheader__mid__list__item">The Salt Factory</li>
-                <li class="myheader__mid__list__item">148</li>
-                <li class="myheader__mid__list__item">Untitled1</li>
+                <router-link to="/droom">
+                    <li class="myheader__mid__list__item" :class="{'project-active': checkPath('Droom')}">Droom</li>
+                </router-link>
+                <router-link to="/thesaltfactory">
+                    <li class="myheader__mid__list__item" :class="{'project-active': checkPath('The Salt Factory')}">The Salt Factory</li>
+                </router-link>
+                <router-link to="/148">
+                    <li class="myheader__mid__list__item" :class="{'project-active': checkPath('Refonte 148')}">Refonte 148</li>
+                </router-link>
             </ul>
         </div>
 
@@ -30,15 +36,27 @@
 
 <script>
  export default {
-     name: 'MyHeader'
+     name: 'MyHeader',
+     methods : {
+         checkPath (string) {
+             return this.$route.name === string
+         }
+     }
  }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang='scss'>
+    .project-active {
+    display: inline-block;
+    color: #fefefe;
+    background: #070707;
+    padding: 5px 20px;
+
+ }
  .myheader{
      flex-grow: 1;
      height:100%;
+     margin-right: 5%;
      &__top {
          &__nick, &__sub {
              font-size: 1em;
@@ -55,15 +73,11 @@
          }
      }
      &__mid {
-         &__current {
-             display: inline-block;
-             color: #fefefe;
-             background: #070707;
-             padding: 5px 20px;
-             margin: 50px 0;
-         }
          &__list {
+
+             margin: 50px 0 0 0;
              &__item {
+                 margin: 5px 0;
                  &:hover {
                      cursor: pointer;
                      text-decoration: underline;
