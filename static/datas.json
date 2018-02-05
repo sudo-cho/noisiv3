@@ -10,8 +10,8 @@
             {"path": "droom/01.jpg", "alt": "droom main interface"},
             {"path": "droom/03.jpg", "alt": "droom main interface"}
         ],
-        "description": "A rhythm game playable with MIDI controller directly in your browser",
-        "fullDescription": "This project is a rhythm game focused in drums, playable in your browser. You can play it with a keyboard or with a MIDI controller such as an electronic drums. It has been coded in javascript using the framework ReactJS, canvas and the web MIDI API. The back-end is done with the framework SailsJS.",
+        "description": "A rhythm game playable with MIDI controler directly in your browser",
+        "fullDescription": "This project is a rhythm game focused in drums, playable in your browser. You can play it with a keyboard or with a MIDI controler such as an electronic drums. It is coded in javascript using the framework ReactJS, canvas and the web MIDI API. The back-end is done with the framework SailsJS.",
         "paragraph": [
             {
                 "name": "Layout & colours",
@@ -48,7 +48,7 @@
             {"path": "tsf/bg.jpg", "alt": "The salt factory main interface"}
         ],
         "description": "A community website full of salt",
-        "fullDescription": "The Salt Factory is reddit-like forum focused in the salt feature. You can create a post about everything and people will rate it with the cool salt button to quantify how salt is the post. This project is written using ReactJS. I was also responsible with a teammate to make the mockups and the graphism of the website. It was a 1-month project made with a team of 8 people. 4 of the team was responsible of the back-end, building the API in PHP.",
+        "fullDescription": "The Salt Factory is a reddit-like forum focused in the salt feature. You can create a post about everything and people will rate it with the cool salt button to quantify how salt is the post. This project is written using ReactJS. I was also responsible with a teammate to make the mockups and the graphism of the website. It was a 1-month project made with a team of 8 people. 4 of the team was responsible of the back-end, building the API in PHP.",
         "paragraph": [
             {
                 "name": "Layout & colours",
@@ -87,7 +87,7 @@
             {"path": "148/03.jpg", "alt": "148 menu"}
         ],
         "description": "A french creative web agency",
-        "fullDescription": "It was a 4-month internship. This redesign has been done by the web designers and we had the charge to refactor the structure of the pages, the logic and the architeture of the website. I was in charge of coding the pages and I also peronally designed and coded the flowers animation of the homepage and the 404 page.",
+        "fullDescription": "It was a 4-month internship. This redesign has been done by the web designers and we had the charge to refactor the structure of the pages, the logic and the architeture of the website. I was in charge of coding the pages and I also personally designed and coded the flowers animation of the homepage and the 404 page.",
         "paragraph": [
             {
                 "name": "Layout & colours",

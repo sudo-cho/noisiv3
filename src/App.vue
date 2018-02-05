@@ -12,6 +12,7 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700');
 
 html, html * {
     box-sizing: border-box;
@@ -53,12 +54,11 @@ a:visited {
 }
 
 #app {
-    font-family: 'Inconsolata', Helvetica, Arial, sans-serif;
+    font-family: 'Ubuntu Mono', monospace;
     font-size: 14px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
     color: #070707;
     background: #fefefe;
 }

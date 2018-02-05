@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import MyHeader from '@/components/MyHeader'
 import Project from '@/components/Project'
+import Lab from '@/components/Lab'
 
 Vue.use(Router)
 
@@ -16,6 +17,7 @@ export default new Router({
                 { path: '/droom', component: Project, name: 'Droom'},
                 { path: '/thesaltfactory', component: Project, name: 'The Salt Factory'},
                 { path: '/148', component: Project, name: 'Refonte 148'},
+                { path: '/lab', component: Lab, name: 'Lab'},
                 { path: '/', component: Project, name: 'Droom'}
             ]
         }

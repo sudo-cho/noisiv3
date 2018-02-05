@@ -8,7 +8,7 @@
             <div class="myheader__mobile__block">
                 <div class="myheader__mobile__block__true">
                     <a target="_blank" rel="noopener" href="mailto:yo@noisiv.fr"><li class="myheader__mobile__block__icon myheader__mobile__block__icon--mail"></li></a>
-                    <a target="_blank" rel="noopener" href="mailto:yo@noisiv.fr"><li class="myheader__mobile__block__icon myheader__mobile__block__icon--resume"></li></a>
+                    <a target="_blank" rel="noopener" href="http://noisiv.fr/images/noisiv-cv.pdf"><li class="myheader__mobile__block__icon myheader__mobile__block__icon--resume"></li></a>
                     <a target="_blank" rel="noopener" href="https://www.last.fm/fr/user/Capdix"><li class="myheader__mobile__block__icon myheader__mobile__block__icon--lastfm"></li></a>
                     <a target="_blank" rel="noopener" href="https://www.senscritique.com/Noisiv"><li class="myheader__mobile__block__icon myheader__mobile__block__icon--sc"></li></a>
                 </div>
@@ -31,6 +31,9 @@
                 <router-link to="/148">
                     <li class="myheader__mobile__block__item" :class="{'project-active-mobile': checkPath('Refonte 148')}">Refonte 148</li>
                 </router-link>
+                <router-link to="/lab">
+                    <li class="myheader__mobile__block__item" :class="{'project-active-mobile': checkPath('Lab')}">Lab</li>
+                </router-link>
             </div>
         </div>
 
@@ -48,6 +51,7 @@
             </div>
 
             <div class="myheader__mid">
+                <h2 class="myheader__mid__title">Selected Projects</h2>
                 <ul class="myheader__mid__list">
                     <router-link to="/droom">
                         <li class="myheader__mid__list__item" :class="{'project-active': checkPath('Droom')}">Droom</li>
@@ -57,6 +61,9 @@
                     </router-link>
                     <router-link to="/148">
                         <li class="myheader__mid__list__item" :class="{'project-active': checkPath('Refonte 148')}">Refonte 148</li>
+                    </router-link>
+                    <router-link to="/lab">
+                        <li class="myheader__mid__list__item" :class="{'project-active': checkPath('Lab')}">Lab</li>
                     </router-link>
                 </ul>
             </div>
@@ -117,7 +124,7 @@
              font-weight: 400;
          }
          &__list {
-             margin-top: 30px 0 0 0;
+             margin: 40px 0 0 0;
              &__item {
                  &:hover {
                      cursor: pointer;
@@ -127,9 +134,10 @@
          }
      }
      &__mid {
-         &__list {
 
              margin: 50px 0 0 0;
+         &__list {
+
              &__item {
                  margin: 5px 0;
                  &:hover {
@@ -148,11 +156,13 @@
      .myheader {
          margin: 0;
          top: 0;
+         left: 0;
          padding-top: 30px;
          position: fixed;
          width: 695px;
          background: #fff;
          z-index: 2;
+         padding-left: 30px;
          height: 90px;
          &__mobile {
              display: flex;
@@ -165,8 +175,8 @@
  }
  @media (max-width: 480px) {
      .myheader {
-         width: 95%;
-         padding-top: 10px;
+         width: 100%;
+         padding: 10px 10px 0px 10px;
          height: 60px;
          &__mobile {
              align-items: center;

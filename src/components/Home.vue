@@ -1,19 +1,35 @@
 <template>
     <div id="home">
         <MyHeader></MyHeader>
-        <Project></Project>
+        <Project v-if="show"></Project>
+        <Lab v-else></Lab>
     </div>
 </template>
 
 <script>
  import MyHeader from '@/components/MyHeader'
  import Project from '@/components/Project'
+ import Lab from '@/components/Lab'
  export default {
      name: 'Home',
      components: {
          'MyHeader': MyHeader,
-         'Project': Project
+         'Project': Project,
+         'Lab': Lab
      },
+     watch: {
+         '$route': 'updateComponent'
+     },
+     methods: {
+         updateComponent () {
+             this.show = (this.$route.name === "Lab") ? false : true
+         }
+     },
+     data () {
+         return {
+             show: true
+         }
+     }
  }
 </script>
 
