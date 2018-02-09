@@ -1,6 +1,6 @@
-# noisiv3
+# noisiv4
 
-> New version of my portfolio using vue 2
+> portfolio v4
 
 ## Build Setup
 

@@ -1,72 +1,42 @@
 <template>
-    <div id="app">
-        <router-view/>
+    <div class="app" id="app">
+        <div class="app__container">
+            <Menu class="app__menu"></Menu>
+            <router-view/>
+        </div>
     </div>
 </template>
 
 <script>
+ import Menu from '@/components/Menu'
  export default {
-     name: 'app'
+     name: 'App',
+     components: {
+         'Menu': Menu
+     }
  }
 </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700');
+<style lang="scss">
+ @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700');
 
-html, html * {
-    box-sizing: border-box;
-}
-html, body, #app {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
+ $lRed: #ced1f5;
+ $dRed: #413c7c;
 
-h2, h3, h4, h5, p {
-    font-size: 1em;
-    line-height: 20px;
-}
+ html, body {
+     margin: 0;
+ }
 
-h1, h2, h3, h4, h5, p, body {
-    margin: 0;
-    padding: 0;
-}
+ body {
+     background: $lRed;
+     color: $dRed;
+     font-family: 'Noto Sans', sans-serif;
+ }
 
-ul {
-    padding: 0;
-}
+ .app {
+     &__container {
+         margin: 0 auto;
+     }
+ }
 
-li {
-    list-style-type: none;
-}
-
-a:link {
-    text-decoration: inherit;
-    color: inherit;
-    cursor: auto;
-}
-
-a:visited {
-    text-decoration: inherit;
-    color: inherit;
-    cursor: auto;
-}
-
-#app {
-    font-family: 'Ubuntu Mono', monospace;
-    font-size: 14px;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #070707;
-    background: #fefefe;
-}
-
-@media (max-width: 768px) {
-    html, body, #app {
-        height: initial;
-        overflow: initial;
-    }
-}
 </style>
