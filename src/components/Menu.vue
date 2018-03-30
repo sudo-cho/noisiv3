@@ -1,11 +1,23 @@
 <template>
     <div class="menu">
-        <div class="menu__left">
-            <p class="menu__left__title">noisiv</p>
-            <p class="menu__left__sub">▲ Creating neat stuff since 1995</p>
-        </div>
+        <transition-group name="fade">
+            <div key="main-content" v-if="$route.name == 'Home' || $route.name == 'Me'"></div>
+
+            <div key="dynamic" v-else-if="$route.name == 'Projects' || $route.name == 'Xtra'" class="menu__left">
+                <p class="menu__left__title">noisiv</p>
+                <p class="menu__left__sub">▲ Creating neat stuff since 1995</p>
+            </div>
+
+            <div key="dynamic" v-else-if="$route.name !== 'Home' && $route.name !== 'Xtra' && $route.name !== 'Projects'" class="menu__left">
+                <router-link to="/" class="no-style">
+                    <p class="menu__left__title">noisiv</p>
+                </router-link>
+                <p class="menu__left__sub"><---- go back home</p>
+            </div>
+        </transition-group>
+
         <div class="menu__right">
-            <router-link :to="item.src" class="no-style" v-for="item in items" :href="item.src" :key="item.id"><p class="menu__right__item">_{{item.text}}</p></router-link>
+            <p @click="switchAndMove" class="menu__right__item">_me + contact</p>
         </div>
     </div>
 </template>
@@ -13,11 +25,9 @@
 <script>
  export default {
      name: 'Menu',
-     data () {
-         return {
-             "items": [
-                 {"id": 1, "src": "/me", "text": "me + contact"}
-             ]
+     methods: {
+         switchAndMove () {
+             this.$router.push('me')
          }
      }
  }
@@ -27,6 +37,15 @@
  .no-style {
      text-decoration: none;
      color: inherit;
+ }
+
+ .fade-enter-active, .fade-leave-active {
+     transition: all .4s .4s ease-in-out;
+ }
+
+ .fade-enter, .fade-leave-to  {
+     opacity:0;
+     transform: translateY(-10px)
  }
 
  .menu {
@@ -43,12 +62,12 @@
      background: #ced1f5;
 
      font-weight: 700;
+
      &__left, &__right {
          display: flex;
      }
 
      &__left {
-
          &__sub {
              font-weight: 400;
              margin-left: 8px;

@@ -31,6 +31,7 @@
      background: $lRed;
      color: $dRed;
      font-family: 'Noto Sans', sans-serif;
+     overflow-x: hidden;
  }
 
  .app {

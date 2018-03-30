@@ -59,10 +59,10 @@
 
 
          &__title {
-             margin: 0;
-             margin-right: -35px;
+             margin: 0 -35px 30px 0;
              font-size: 7em;
              font-weight: 700;
+             line-height: 1;
          }
 
          &__desc {

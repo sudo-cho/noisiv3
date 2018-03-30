@@ -1,5 +1,5 @@
 <template>
-    <div class="scroller">
+    <div @click="$emit('scrollClicked')" class="scroller">
         {{text}}
     </div>
 </template>
@@ -18,25 +18,37 @@
      left: 95px;
 
      font-size: 1em;
+     z-index: 99;
 
      transform: rotate(90deg);
+
+     &:hover{
+         cursor: pointer;
+         &:before {
+             transform: rotate(-90deg) translate(-125px, 95px);
+         }
+         &:after {
+             transform: rotate(90deg) translate(-0.5px, -194px);
+         }
+     }
 
      &:before, &:after {
          content: '';
          display: block;
-         background: #413c7c;
+         transition: all 0.3s;
      }
 
      &:before {
          transform: rotate(-90deg) translate(-125px, 80px);
          width: 4px; height: 190px;
+         background: #413c7c;
      }
 
      &:after {
-         transform: rotate(-90deg) translate(0px, 170px);
+         content: '▲';
+         transform: rotate(90deg) translate(-0.5px, -179px);
          width: 15px;
          height: 15px;
-         border-radius: 50%;
      }
  }
 </style>

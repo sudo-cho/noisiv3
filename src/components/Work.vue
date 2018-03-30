@@ -19,7 +19,7 @@
                     <h2 class="work__main__sum__details__text">Jobs<span class="work__main__sum__details__text__title">{{data.details2.jobs}}</span></h2>
                 </div>
                 <p class="work__main__sum__text">{{data.summary}}</p>
-                <a href="https://droom-game.github.io" class="no-style"><p class="work__main__sum__button">Try it by yourself</p></a>
+                <a v-if="data.link != 'null'" :href="data.link" rel="noopener" target="_blank" class="no-style"><p class="work__main__sum__button">Try it by yourself</p></a>
             </div>
 
             <div class="work__main__gallery">
@@ -30,7 +30,9 @@
 
         <footer class="work__footer">
             <h2 class="work__footer__text">Next project</h2>
-            <h2 class="work__footer__title">droom</h2>
+            <router-link class="no-style" :to="data.next.link">
+                <h2 class="work__footer__title">{{data.next.title}}</h2>
+            </router-link>
         </footer>
     </div>
 </template>
@@ -40,29 +42,83 @@
      name: 'Work',
      data () {
          return {
-             "data": {
-                 "number": "01",
-                 "title": "droom",
-                 "description": "A rhythm game playable with midi controller",
-                 "details": "2017 - Sylvain Cherrier - react.firebase",
-                 "details2": {
-                     "client": "Sylvain Cherrier",
-                     "date": "may 2017",
-                     "jobs": "frontend, backend"
+             data: null,
+             "projects": [
+                 {
+                     "number": "01",
+                     "title": "droom",
+                     "description": "A rhythm game playable with midi controller",
+                     "details2": {
+                         "client": "Sylvain Cherrier",
+                         "date": "may 2017",
+                         "jobs": "frontend, backend"
+                     },
+                     "preview": {"src":"droom.jpg", "alt":"Droom main interface"},
+                     "summary": "This project is a rhythm game focused in drums, playable in your browser. You can play it with a keyboard or with a MIDI controller such as an electronic drums. It has been coded in javascript using the framework ReactJS, canvas and the web MIDI API. The back-end is done with the framework SailsJS.",
+                     "link": "https://droom-game.github.io",
+                     "stack": [],
+                     "next": {"title": "148", "link": "/148"},
+                     "gallery": ["droom/01.jpg", "droom/02.jpg", "droom/03.jpg"]
                  },
-                 "preview": {"src":"projects/droom.jpg", "alt":"Droom main interface"},
-                 "summary": "This project is a rhythm game focused in drums, playable in your browser. You can play it with a keyboard or with a MIDI controller such as an electronic drums. It has been coded in javascript using the framework ReactJS, canvas and the web MIDI API. The back-end is done with the framework SailsJS.",
-                 "colors": [],
-                 "fonts": [],
-                 "stack": [],
-                 "gallery": ["projects/droom.jpg", "projects/droom.jpg", "projects/droom.jpg"]
-             }
+                 {
+                     "number": "02",
+                     "title": "148",
+                     "description": "A french creative web agency",
+                     "details2": {
+                         "client": "Agence 148",
+                         "date": "July 2017",
+                         "jobs": "frontend, backend, graphism"
+                     },
+                     "preview": {"src":"148.jpg", "alt":"148 homepage"},
+                     "summary": "It was a 2-month project. This redesign has been done by the web designers and we had the charge to refactor the structure of the pages, the logic and the architeture of the website. I was in charge of coding the pages and I also personally designed and coded the flowers animation of the homepage and the 404 page.",
+                     "link": "https://148.fr",
+                     "stack": [],
+                     "next": {"title": "The Salt Factory", "link": "/thesaltfactory"},
+                     "gallery": ["148/01.jpg", "148/02.jpg", "148/03.jpg"]
+                 },
+                 {
+                     "number": "03",
+                     "title": "The Salt Factory",
+                     "description": "A community website full of salt",
+                     "details2": {
+                         "client": "Imac ingénieur",
+                         "date": "march 2017",
+                         "jobs": "frontend, graphism"
+                     },
+                     "preview": {"src":"tsf.jpg", "alt":"Droom main interface"},
+                     "summary": "The Salt Factory is reddit-like forum focused in the salt feature. You can create a post about everything and people will rate it with the cool salt button to quantify how salt is the post. This project is written using ReactJS. I was also responsible with a teammate to make the mockups and the graphism of the website. It was a 1-month project made with a team of 8 people. 4 of the team was responsible of the back-end, building the API in PHP.",
+                     "link": "null",
+                     "stack": [],
+                     "next": {"title": "droom", "link": "/droom"},
+                     "gallery": ["tsf/01.jpg"]
+                 }
+             ]
          }
+     },
+     watch: {
+         '$route': 'updateData'
+     },
+     created () {
+         this.updateData()
      },
      methods: {
          imagePath (path) {
-             return require("../assets/img/" + path)
+             return require("../assets/img/projects/" + path)
          },
+         updateData () {
+             switch (this.$route.params.projectname) {
+                 case 'droom':
+                     this.data = this.projects[0]
+                     break;
+                 case '148':
+                     this.data = this.projects[1]
+                     break;
+                 case 'thesaltfactory':
+                     this.data = this.projects[2]
+                     break;
+
+             }
+         }
      },
  }
 </script>
@@ -86,6 +142,8 @@
              &__title {
                  font-size: 10em;
                  font-weight: 700;
+                 line-height: 1;
+                 margin-bottom: 35px;
              }
 
              &__desc {

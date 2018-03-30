@@ -1,9 +1,7 @@
 <template>
     <div :class="{'me--active': checkPath()}" class="me">
         <div class="me__menu">
-            <router-link to="/" class="no-style">
-                <p class="me__menu__item">back</p>
-            </router-link>
+            <p @click="moveBack" class="me__menu__item">back</p>
         </div>
         <Breadcrumbs class="me__bc" text="Lucas"></Breadcrumbs>
         <div class="me__content">
@@ -43,6 +41,9 @@
      methods : {
          checkPath () {
              return this.$route.name === "Me" ? true : false
+         },
+         moveBack () {
+             this.$router.go(-1)
          }
      },
      components: {
@@ -58,17 +59,42 @@
      width: 100%; height: 100vh;
      box-sizing: border-box;
 
-     position: absolute;
+     position: fixed;
      z-index: 100;
      top: 0;
      left: 0;
      background: #ced1f5;
 
+     @keyframes showMeComp {
+         0% {transform:scale(6) translateX(500px); }
+         66% {transform: scale(6) translateX(0); }
+         100% {transform: scale(1) translateX(0); }
+     }
+
+     @keyframes fadeIn {
+         from {opacity: 0;}
+         to {opacity: 1;}
+     }
+
      &--active {
+         .me {
+             &__menu, &__bc {
+                 animation: fadeIn .3s 1s forwards;
+             }
+             &__content {
+                 &__left, &__right {
+                     animation: fadeIn .3s 1s ease-in-out forwards;
+                 }
+                 &__mid {
+                     animation: showMeComp 2s;
+                 }
+             }
+         }
          visibility: visible;
      }
 
      &__menu {
+         opacity: 0;
          width: 100%;
          box-sizing: border-box;
          padding: 15px 35px;
@@ -90,6 +116,7 @@
      }
 
      &__bc {
+         opacity: 0;
          left: 80px !important;
      }
 
@@ -106,6 +133,7 @@
          display: flex;
 
          &__left {
+             opacity: 0;
              flex: 2;
              margin-right: 45px;
 
@@ -149,11 +177,14 @@
          }
 
          &__mid {
+             z-index: 50;
+             position: relative;
              width: 500px;
              background: #413c7c;
          }
 
          &__right {
+             opacity: 0;
              display: flex;
              justify-content: center;
              align-items: center;

@@ -10,8 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "gsap": "^1.20.4",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-intersect": "^1.1.2",
+    "vue-router": "^3.0.1",
+    "vue-scroll": "^2.1.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
