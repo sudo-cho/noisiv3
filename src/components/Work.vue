@@ -1,43 +1,48 @@
 <template>
-    <div class="work">
-        <header class="work__header">
-            <div class="work__header__left">
-                <div class="work__header__left__title">{{data.title}}</div>
-                <div class="work__header__left__desc">/ {{data.description}}</div>
-            </div>
-            <div class="work__header__right">
-                <img class="work__header__right__img" :alt="data.preview.alt" :src="imagePath(data.preview.src)"/>
-            </div>
-        </header>
-
-        <main class="work__main">
-
-            <div class="work__main__sum">
-                <div class="work__main__sum__details">
-                    <h2 class="work__main__sum__details__text">Date<span class="work__main__sum__details__text__title">{{data.details2.date}}</span></h2>
-                    <h2 class="work__main__sum__details__text">Clients<span class="work__main__sum__details__text__title">{{data.details2.client}}</span></h2>
-                    <h2 class="work__main__sum__details__text">Jobs<span class="work__main__sum__details__text__title">{{data.details2.jobs}}</span></h2>
+    <transition name="fade">
+        <div ref="work" id="work" class="work">
+            <header class="work__header">
+                <div class="work__header__left">
+                    <div class="work__header__left__title">{{data.title}}</div>
+                    <div class="work__header__left__desc">/ {{data.description}}</div>
                 </div>
-                <p class="work__main__sum__text">{{data.summary}}</p>
-                <a v-if="data.link != 'null'" :href="data.link" rel="noopener" target="_blank" class="no-style"><p class="work__main__sum__button">Try it by yourself</p></a>
-            </div>
+                <div class="work__header__right">
+                    <img class="work__header__right__img" :alt="data.preview.alt" :src="imagePath(data.preview.src)"/>
+                </div>
+            </header>
 
-            <div class="work__main__gallery">
-                <img v-for="item in data.gallery" class="work__main__gallery__img" :alt="data.preview.alt" :src="imagePath(item)"/>
-            </div>
+            <main class="work__main">
 
-        </main>
+                <div class="work__main__sum">
+                    <div class="work__main__sum__details">
+                        <h2 class="work__main__sum__details__text">Date<span class="work__main__sum__details__text__title">{{data.details2.date}}</span></h2>
+                        <h2 class="work__main__sum__details__text">Clients<span class="work__main__sum__details__text__title">{{data.details2.client}}</span></h2>
+                        <h2 class="work__main__sum__details__text">Jobs<span class="work__main__sum__details__text__title">{{data.details2.jobs}}</span></h2>
+                    </div>
+                    <p class="work__main__sum__text">{{data.summary}}</p>
+                    <a v-if="data.link != 'null'" :href="data.link" rel="noopener" target="_blank" class="no-style"><p class="work__main__sum__button">Try it by yourself</p></a>
+                </div>
 
-        <footer class="work__footer">
-            <h2 class="work__footer__text">Next project</h2>
-            <router-link class="no-style" :to="data.next.link">
-                <h2 class="work__footer__title">{{data.next.title}}</h2>
-            </router-link>
-        </footer>
-    </div>
+                <div class="work__main__gallery">
+                    <img v-for="item in data.gallery" class="work__main__gallery__img" :alt="data.preview.alt" :src="imagePath(item)"/>
+                </div>
+
+            </main>
+
+            <footer class="work__footer">
+                <h2 class="work__footer__text">Next project</h2>
+                <router-link class="no-style" :to="data.next.link">
+                    <h2 class="work__footer__title">{{data.next.title}}</h2>
+                </router-link>
+            </footer>
+        </div>
+    </transition>
 </template>
 
 <script>
+ import {TweenLite, Expo} from "gsap";
+ import ScrollToPlugin from "gsap/ScrollToPlugin";
+
  export default {
      name: 'Work',
      data () {
@@ -98,14 +103,14 @@
      watch: {
          '$route': 'updateData'
      },
-     created () {
-         this.updateData()
+     mounted () {
+         this.mountData()
      },
      methods: {
          imagePath (path) {
              return require("../assets/img/projects/" + path)
          },
-         updateData () {
+         mountData () {
              switch (this.$route.params.projectname) {
                  case 'droom':
                      this.data = this.projects[0]
@@ -116,17 +121,50 @@
                  case 'thesaltfactory':
                      this.data = this.projects[2]
                      break;
-
              }
+             TweenLite.to(window, 1.5, {scrollTo:"#work", ease:Expo.easeInOut})
+         },
+         updateData () {
+             this.$refs.work.classList.add('work--switching')
+
+             setTimeout(_ => {
+                 switch (this.$route.params.projectname) {
+                     case 'droom':
+                         this.data = this.projects[0]
+                         break;
+                     case '148':
+                         this.data = this.projects[1]
+                         break;
+                     case 'thesaltfactory':
+                         this.data = this.projects[2]
+                         break;
+                 }
+                 this.$refs.work.classList.remove('work--switching')
+             }, 900)
+
+             setTimeout(_ => {TweenLite.to(window, 1.5, {scrollTo:"#work", ease:Expo.easeInOut})}, 400)
          }
      },
  }
 </script>
 
 <style lang="scss">
+ .fade-enter-active, .fade-leave-active {
+     transition: opacity 0.5s;
+ }
+ .fade-enter, .fade-leave-to {
+     opacity: 0;
+ }
+
  .work {
+     transition: opacity .5s;
      padding-top: 85px;
      overflow-x: hidden;
+
+     &--switching {
+         transition: opacity .5s;
+         opacity: 0
+     }
 
      &__header {
 

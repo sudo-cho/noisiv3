@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'me--active': checkPath()}" class="me">
+    <div ref="me" :class="{'me--active': checkPath()}" class="me">
         <div class="me__menu">
             <p @click="moveBack" class="me__menu__item">back</p>
         </div>
@@ -43,7 +43,12 @@
              return this.$route.name === "Me" ? true : false
          },
          moveBack () {
-             this.$router.go(-1)
+             this.$refs.me.classList.remove('me--active')
+             this.$refs.me.classList.add('me--unactive')
+             setTimeout(_ => {
+                 this.$refs.me.classList.remove('me--unactive')
+                 this.$router.go(-1)
+             }, 1600)
          }
      },
      components: {
@@ -71,9 +76,40 @@
          100% {transform: scale(1) translateX(0); }
      }
 
+     @keyframes unshowMeComp {
+         0% {transform: scale(1) translateX(0);}
+         66% {transform: scale(6) translateX(0); }
+         100% {transform:scale(6) translateX(500px); }
+     }
+
      @keyframes fadeIn {
          from {opacity: 0;}
          to {opacity: 1;}
+     }
+
+     @keyframes fadeOut {
+         from {opacity: 1;}
+         to {opacity: 0;}
+     }
+
+     &--unactive {
+         visibility: visible;
+         .me {
+             &__menu, &__bc {
+                 opacity: 1;
+                 animation: fadeOut .3s 1s forwards;
+             }
+             &__content {
+                 &__left, &__right {
+                     opacity: 1;
+                     animation: fadeOut .3s 1s ease-in-out forwards;
+                 }
+                 &__mid {
+                     animation: unshowMeComp 2s forwards;
+                 }
+             }
+         }
+
      }
 
      &--active {

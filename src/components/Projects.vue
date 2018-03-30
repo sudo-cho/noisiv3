@@ -6,21 +6,16 @@
 
         <div class="projects__content">
 
-            <router-link to="/droom" class="no-style">
-                <Project name="droom" :data="projects[0]"></Project>
-            </router-link>
-
-            <router-link to="/148" class="no-style">
-                <Project name="148" :data="projects[1]"></Project>
-            </router-link>
-
-            <router-link to="/thesaltfactory" class="no-style">
-                <Project name="tsf" :data="projects[2]"></Project>
-            </router-link>
-
-            <router-link to="/droom" class="no-style">
-                <Project name="folio" :data="projects[3]"></Project>
-            </router-link>
+            <Intersect
+                :threshold="[0.5]"
+                v-for="(project, key) in projects"
+                :key="project.title"
+                @enter.once="animEnterProject($refs[project.title])"
+            >
+                <router-link :to="{path: `/${project.title}`}" class="no-style">
+                    <Project :ref="project.title" :name="project.title" :data="projects[key]" :enterActive="false"></Project>
+                </router-link>
+            </Intersect>
 
         </div>
     </div>
@@ -30,12 +25,20 @@
  import Breadcrumbs from '@/components/Breadcrumbs'
  import Project from '@/components/Project'
  import Scroller from '@/components/Scroller'
+ import Intersect from 'vue-intersect'
+
  export default {
      name: 'Projects',
      components: {
          'Breadcrumbs': Breadcrumbs,
          'Project': Project,
-         'Scroller': Scroller
+         'Scroller': Scroller,
+         'Intersect': Intersect
+     },
+     methods: {
+         animEnterProject(elm) {
+             elm[0].enterActive = true
+         }
      },
      data () {
          return {

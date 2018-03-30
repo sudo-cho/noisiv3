@@ -27,7 +27,7 @@
      name: 'Menu',
      methods: {
          switchAndMove () {
-             this.$router.push('me')
+             this.$router.push('/me')
          }
      }
  }

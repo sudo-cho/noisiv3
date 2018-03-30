@@ -22,14 +22,10 @@ export default new Router({
             children: [
                 {path: '/projects', component: Projects, name: 'Projects'},
                 {path: '/xtra', component: Xtra, name: 'Xtra'},
-                {path: '/me', component: Me, name: 'Me'},
                 {path: '/menu', component: Menu, name: 'Menu'}
             ]
         },
-        {
-            path: '/:projectname',
-            component: Work,
-            name: 'Work'
-        }
+        {path: '/me', component: Me, name: 'Me'},
+        {path: '/:projectname', component: Work, name: 'Work'}
     ]
 })

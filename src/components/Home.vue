@@ -1,25 +1,28 @@
 <template>
-    <div class="home">
-        <Breadcrumbs text="noisiv"></Breadcrumbs>
-        <Scroller @scrollClicked="scrollComponent($refs.projects.$el, true)" text="main projects"></Scroller>
+    <transition v-if="$route.name !== 'Me'" name="fade">
+        <div class="home">
+            <Breadcrumbs text="noisiv"></Breadcrumbs>
+            <Scroller @scrollClicked="scrollComponent($refs.projects.$el, true)" text="main projects"></Scroller>
 
-        <Waves></Waves>
+            <Waves></Waves>
 
-        <div ref="homeContent" class="home__content">
-            <div class="home__content__titles">
-                <h1 class="home__content__titles__title">noisiv.</h1>
-                <h2 class="home__content__titles__sub">▲ Creating neat stuff since 1995</h2>
+            <div ref="homeContent" class="home__content">
+                <div class="home__content__titles">
+                    <h1 class="home__content__titles__title">noisiv.</h1>
+                    <h2 class="home__content__titles__sub">▲ Creating neat stuff since 1995</h2>
+                </div>
             </div>
+
+            <Projects @projectScrollerClicked="scrollComponent($refs.xtra.$el, true)" ref="projects"></Projects>
+
+            <Intersect @enter="scrollComponent2($refs.xtra.$el, false)">
+                <Xtra ref="xtra"></Xtra>
+            </Intersect>
+
         </div>
+    </transition>
 
-        <Projects @projectScrollerClicked="scrollComponent($refs.xtra.$el, true)" ref="projects"></Projects>
-
-        <Intersect @enter="scrollComponent2($refs.xtra.$el, false)">
-            <Xtra ref="xtra"></Xtra>
-        </Intersect>
-        <Me></Me>
-
-    </div>
+    <Me v-else></Me>
 </template>
 
 <script>
@@ -29,7 +32,6 @@
  import Xtra from '@/components/Xtra'
  import Me from '@/components/Me'
  import Waves from '@/components/Waves'
- import IntersectArea from '@/components/IntersectArea'
 
  import Intersect from 'vue-intersect'
  import {TweenLite, Expo} from "gsap";
@@ -44,8 +46,7 @@
          'Xtra': Xtra,
          'Me': Me,
          'Waves': Waves,
-         'Intersect': Intersect,
-         'IntersectArea': IntersectArea,
+         'Intersect': Intersect
      },
      data () {
          return {
@@ -120,6 +121,13 @@
 </script>
 
 <style lang="scss">
+ .fade-enter-active, .fade-leave-active {
+     transition: opacity 1s;
+ }
+ .fade-enter, .fade-leave-to {
+     opacity: 0;
+ }
+
  .home {
      &__content {
          position: relative;
