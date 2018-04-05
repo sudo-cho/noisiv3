@@ -2,20 +2,6 @@
 
 > portfolio v3 (actually it's v4)
 
-## Build Setup
+## Production website
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+The website is currently in beta, the production version is available at this link : [v4.noisiv.fr](v4.noisiv.fr)
