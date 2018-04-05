@@ -4,4 +4,4 @@
 
 ## Production website
 
-The website is currently in beta, the production version is available at this link : [v4.noisiv.fr](https://v4.noisiv.fr)
+The website is currently in beta, the production version is available at this link : [v4.noisiv.fr](http://v4.noisiv.fr)
